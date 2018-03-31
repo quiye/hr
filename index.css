@@ -1,0 +1,36 @@
+.breathe {
+        width: 150px;
+        height: 150px;
+        /* border-radius: 50%; */
+        background-color:#FFF;
+        text-align: center;
+        /* position: absolute; */
+        margin: auto;
+
+        /* -moz-animation: animationTest 1s ease-in-out 0s infinite normal; */
+        /* -webkit-animation: animationTest 0.841 infinite normal;- */
+        -webkit-animation: animationTest 0.927s
+        ease-out 0s infinite normal;-
+        /* -ms-animation: animationTest 1s ease-in-out 0s infinite normal; */
+    }
+
+@-moz-keyframes animationTest {
+        50%{ transform:scale(1.3); }
+    }
+
+@-webkit-keyframes animationTest {
+        50%{ transform:scale(1.3); }
+    }
+
+@-ms-keyframes animationTest {
+        50%{ transform:scale(1.3); }
+    }
+
+div#wrapper {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    text-align: center;
+    border: 0px solid #FF0000;
+}
+
