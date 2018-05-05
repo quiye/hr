@@ -6,5 +6,5 @@ cd /home/pi/hr/
 #sed "s/-webkit-animation: animationTest .*s/-webkit-animation: animationTest `cat hr.txt|awk '{print $2}'`s/g" -i index.css
 #sed "s/index\.css?v=[0-9]*/index\.css?v=`date +%s`/g" -i index.html
 #sed "s/hr\.json?v=[0-9]*/hr\.json?v=`date +%s`/g" -i index.html
-echo "{\"heartrate\": \"`cat hr.txt|awk '{print $1}'`\", \"date\": \"`date`\", \"animationrate\": \"`cat hr.txt|awk '{print $2}'`\"}" > hr.json
+echo "{\"heartrate\": \"`cut -f1 -d' ' hr.txt`\", \"date\": \"`date`\", \"animationrate\": \"`cut -f2 -d' ' hr.txt`\"}" > hr.json
 git commit -a -m "`date`" && git push origin master
