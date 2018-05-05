@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no, minimal-ui">
   <!-- meta name="apple-mobile-web-app-capable" content="yes" -->
-  <link rel="stylesheet" href="index.css?v=1525529822" />
+  <link rel="stylesheet" href="index.css?v=1525529883" />
   <meta name="twitter:card" content="summary">
   <meta name="twitter:creator" content="@a_ab_abc">
   <meta property="og:title" content="これから毎日脈を公開しようぜ">
@@ -33,7 +33,7 @@
   <br>
   <br>
   <div id="wrapper">
-    <div class="breathe">
+    <div class="breathe" v-bind:style="styleObject">
       <img border="0" src="my_heart.png">
     </div>
     <br>
@@ -46,12 +46,19 @@
   <script>
     const vm = new Vue({
       el: "#wrapper",
-      data: { hr: null, date: null },
+      data: {
+        hr: null,
+        date: null,
+        styleObject: {
+          "-webkit-animation": null
+        }
+      },
       mounted() {
         axios.get("https://quiye.github.io/hr/hr.json?v=" + Date.now())
           .then(r => {
             this.hr = r.data.heartrate;
             this.date = r.data.date;
+            this.styleObject["-webkit-animation"] = "animationTest " + r.data.animationrate + "s ease-out 0s infinite normal";
           })
       }
     });
