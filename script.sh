@@ -5,6 +5,6 @@ cd /home/pi/hr/
 #sed "s/心拍数.*分/心拍数: `cat hr.txt|awk '{print $1}'` 回\/分/g" -i index.html
 sed "s/-webkit-animation: animationTest .*s/-webkit-animation: animationTest `cat hr.txt|awk '{print $2}'`s/g" -i index.css
 sed "s/index\.css?v=[0-9]*/index\.css?v=`date +%s`/g" -i index.html
-sed "s/hr\.json?v=[0-9]*/hr\.json?v=`date +%s`/g" -i index.html
+#sed "s/hr\.json?v=[0-9]*/hr\.json?v=`date +%s`/g" -i index.html
 echo "{\"heartrate\": \"`cat hr.txt|awk '{print $1}'`\", \"date\": \"`date`\", \"animationrate\": \"`cat hr.txt|awk '{print $2}'`\"}" > hr.json
 git commit -a -m "`date`" && git push origin master
