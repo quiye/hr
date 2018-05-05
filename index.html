@@ -2,44 +2,60 @@
 <html>
 
 <head>
-    <title>これから毎日脈を公開しようぜ</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no, minimal-ui">
-    <!-- meta name="apple-mobile-web-app-capable" content="yes" -->
-    <link rel="stylesheet" href="index.css?v=1525518002" />
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:creator" content="@a_ab_abc">
-    <meta property="og:title" content="これから毎日脈を公開しようぜ">
-    <meta property="og:description" content="これから毎日脈を公開しようぜ">
-    <meta property="og:image" content="https://quiye.github.io/hr/my_heart.png">
-    <link rel="shortcut icon" href="/hr/favicon.ico" type="image/vnd.microsoft.icon">
-    <!-- <link rel="icon" href="/hr/favicon.ico" type="image/vnd.microsoft.icon"> -->
-    <link rel="icon" sizes="192x192" href="my_heart.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="my_heart.png">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114727708-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-114727708-1');
-    </script>
+  <title>これから毎日脈を公開しようぜ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no, minimal-ui">
+  <!-- meta name="apple-mobile-web-app-capable" content="yes" -->
+  <link rel="stylesheet" href="index.css?v=1525518002" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:creator" content="@a_ab_abc">
+  <meta property="og:title" content="これから毎日脈を公開しようぜ">
+  <meta property="og:description" content="これから毎日脈を公開しようぜ">
+  <meta property="og:image" content="https://quiye.github.io/hr/my_heart.png">
+  <link rel="shortcut icon" href="/hr/favicon.ico" type="image/vnd.microsoft.icon">
+  <!-- <link rel="icon" href="/hr/favicon.ico" type="image/vnd.microsoft.icon"> -->
+  <link rel="icon" sizes="192x192" href="my_heart.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="my_heart.png">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114727708-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-114727708-1');
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 </head>
 
 <body>
-<br><br><br>
-<div id="wrapper">
-<div class="breathe" >
-  <img border="0" src="my_heart.png">
-</div>
-<br>
-<br>
-心拍数: 111.5 回/分
-<br>
-at 2018年  5月  5日 土曜日 20:00:02 JST
-<br>
-<a href="https://twitter.com/a_ab_abc/status/952089287536738304">@a_ab_abc</a>
-</div>
-<script> setTimeout('location.reload(true)',59000); </script>
+  <br>
+  <br>
+  <br>
+  <div id="wrapper">
+    <div class="breathe">
+      <img border="0" src="my_heart.png">
+    </div>
+    <br>
+    <br> 心拍数: {{ hr }} 回/分
+    <br> at {{ date }}
+    <br>
+    <a href="https://twitter.com/a_ab_abc/status/952089287536738304">@a_ab_abc</a>
+  </div>
+  <script> setTimeout('location.reload(true)', 59000); </script>
+  <script>
+    const vm = new Vue({
+      el: "#wrapper",
+      data: { hr: null, date: null },
+      mounted() {
+        axios.get("https://quiye.github.io/hr/hr.json")
+          .then(r => {
+            this.hr = r.data.heartrate;
+            this.date = r.data.date;
+          })
+      }
+    });
+  </script>
 </body>
+
 </html>
