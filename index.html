@@ -42,8 +42,15 @@
     <br>
     <a href="https://twitter.com/a_ab_abc/status/952089287536738304">@a_ab_abc</a>
   </div>
-  <script> setTimeout('location.reload(true)', 59000); </script>
   <script>
+    let f = async function () {
+      var r = await axios.get("https://quiye.github.io/hr/hr.json?v=" + Date.now());
+      // console.log(r.data.heartrate + ", " +r.data.animationrate + ", " + Date.now())
+      vm.hr = r.data.heartrate;
+      vm.date = r.data.date;
+      vm.styleObject["-webkit-animation"] = "animationTest " + r.data.animationrate + "s ease-out 0s infinite normal";
+    };
+
     const vm = new Vue({
       el: "#wrapper",
       data: {
@@ -53,15 +60,10 @@
           "-webkit-animation": null
         }
       },
-      mounted() {
-        axios.get("https://quiye.github.io/hr/hr.json?v=" + Date.now())
-          .then(r => {
-            this.hr = r.data.heartrate;
-            this.date = r.data.date;
-            this.styleObject["-webkit-animation"] = "animationTest " + r.data.animationrate + "s ease-out 0s infinite normal";
-          })
-      }
+      mounted: f
     });
+
+    setInterval(f, 59000);
   </script>
 </body>
 
