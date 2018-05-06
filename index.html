@@ -44,7 +44,7 @@
   </div>
   <script>
     let f = async function () {
-      var r = await axios.get("https://quiye.github.io/hr/hr.json?v=" + Date.now());
+      var r = await axios.get("https://api.myjson.com/bins/kfhmi?v=" + Date.now());
       // console.log(r.data.heartrate + ", " +r.data.animationrate + ", " + Date.now())
       vm.hr = r.data.heartrate;
       vm.date = r.data.date;

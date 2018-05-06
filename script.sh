@@ -8,3 +8,4 @@ cd /home/pi/hr/
 #sed "s/hr\.json?v=[0-9]*/hr\.json?v=`date +%s`/g" -i index.html
 echo "{\"heartrate\": \"`cut -f1 -d' ' hr.txt`\", \"date\": \"`date`\", \"animationrate\": \"`cut -f2 -d' ' hr.txt`\"}" > hr.json
 git add hr.json && git commit -m "`date`" && git push origin master
+curl -sS --dump-header - 'https://api.myjson.com/bins/kfhmi' -X PUT -H 'Content-Type:application/json; charset=utf-8' -d "{\"heartrate\": \"`cut -f1 -d' ' hr.txt`\", \"date\": \"`date`\", \"animationrate\": \"`cut -f2 -d' ' hr.txt`\"}"
