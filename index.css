@@ -31,4 +31,8 @@ div#wrapper {
     text-align: center;
     border: 0px solid #FF0000;
 }
+div#title {
+    margin: 0 auto;
+    text-align: center;
+}
 
